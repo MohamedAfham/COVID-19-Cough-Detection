@@ -50,7 +50,8 @@ class PreProcess():
         mel_filter = librosa.filters.mel(sampling_rate, frame_length, n_mels=128, fmin=0, fmax=None)  #calculating mel filter array
         
         mel_spect_samples = np.dot(mel_filter, spect_samples)   #calculating mel spectrogram
-        spectrum = mel_spect_samples.ravel().reshape(128,287,1)
+        spectrum = np.expand_dims(mel_spect_samples,axis = -1)
+        #spectrum = mel_spect_samples.ravel().reshape(128,287,1)
         #spectrum = mel_spect_samples
         return spectrum
 
