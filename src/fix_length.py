@@ -13,6 +13,8 @@ def make_audio_length(selected_audio,seconds,sampling_rate = 22050):
         audio_n[rand_start:rand_start + len(selected_audio)] = selected_audio
         res_audio = audio_n
 
+    else:
+        res_audio = selected_audio
     noise = np.random.randn(len(res_audio)) * 0.0005
     res_audio = res_audio + noise
 
