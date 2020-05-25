@@ -3,7 +3,15 @@ import random
 import numpy as np
 import os
 
-class PreProcess():    
+class PreProcess(): 
+    def bg_noise_arr(self,bg_noise_dir):
+        bg_noise_files = os.listdir(bg_noise_dir)
+        bg_noise_list = []
+        for audio in bg_noise_files:
+            bg_noise = self.read_audio(bg_noise_dir,audio)[0]
+            bg_noise_list.append(bg_noise)
+        return bg_noise_list
+
     def read_audio(self,audio_directory,audio_file):
         audio,sampling_rate = librosa.core.load(audio_directory+audio_file)
         return (audio,sampling_rate)
@@ -14,11 +22,9 @@ class PreProcess():
         augmented_samples = audio * factor
         return augmented_samples
 
-    def bg_noise_aug(self,audio):
-        bg_dir = "Sounds_up\\Background Noise\\"
-        bg_noise_list = os.listdir(bg_dir)
-        bg_noise = self.read_audio(bg_dir,random.choice(bg_noise_list))[0]
-        length = len(audio)
+    def bg_noise_aug(self,audio,bg_noise_list):
+        bg_noise = random.choice(bg_noise_list)
+        length = len(audio)   
         rand_start = random.randrange(len(bg_noise)- length)
         augmented_audio = audio + bg_noise[rand_start:rand_start + length]
         return augmented_audio
