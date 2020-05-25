@@ -1,4 +1,4 @@
-def val_test_data_array(files,is_val,directories,bg_noise_list):
+def val_test_data_array(files,is_val,directories,seconds,bg_noise_list):
     from src.fix_length import make_audio_length
     from src.preprocess import PreProcess
 
@@ -6,6 +6,8 @@ def val_test_data_array(files,is_val,directories,bg_noise_list):
     files: The list of audio file names in the directory
     is_val: validation dataset or test_dataset need (Bool)
     directories: [non_cough audio directory, cough audio directory]
+    seconds: Length of an audio in seconds
+    bg_noise_list: Array/List of background Noise
 
     Returns:
     list of a spectrums and list of corresponding labels
@@ -15,7 +17,6 @@ def val_test_data_array(files,is_val,directories,bg_noise_list):
     spectrum_list = []
     label_list = []
     for i in range(total_length):
-        print (i, end = " ")
         if i < len(files[0]):
             label = 0
         else:
@@ -23,7 +24,7 @@ def val_test_data_array(files,is_val,directories,bg_noise_list):
         audio_directory = directories[label]  # 0 for non_cough and 1 for cough
         selected_audio,fs = PreProcess().read_audio(audio_directory,files[label][i - len(files[0]) * label])
 
-        res_audio = make_audio_length(selected_audio,seconds = 5,sampling_rate = 22050)
+        res_audio = make_audio_length(selected_audio,seconds,sampling_rate = 22050)
         
         if is_val:
             vol_aug = PreProcess().volume_aug(res_audio)
