@@ -1,3 +1,5 @@
+import numpy as np 
+
 def val_test_data_array(files,is_val,directories,seconds,bg_noise_list):
     from src.Audio_Process.fix_length import make_audio_length
     from src.Audio_Process.preprocess import PreProcess
@@ -37,7 +39,7 @@ def val_test_data_array(files,is_val,directories,seconds,bg_noise_list):
 
         spectrum_list.append(spectrum)
         label_list.append(label)
-    return (spectrum_list,label_list)
+    return (np.array(spectrum_list),np.array(label_list))
 
         
 
