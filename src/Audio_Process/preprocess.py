@@ -34,7 +34,7 @@ class PreProcess():
         samples = audio
         frame_size = 0.025
         frame_stride = frame_size * 0.7
-        no_of_mels = 128
+        #no_of_mels = 128
         frame_length, frame_step = frame_size * sampling_rate, frame_stride * sampling_rate  
         frame_length = int(round(frame_length))
         frame_step = int(round(frame_step))

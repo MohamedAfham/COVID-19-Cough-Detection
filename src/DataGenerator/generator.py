@@ -3,8 +3,8 @@ import numpy as np
 import random
 
 def train_generator(batch_size,train_files,seconds,cough_dir,non_cough_dir,bg_noise_dir):
-  from src.preprocess import PreProcess
-  from src.fix_length import make_audio_length
+  from src.Audio_Process.preprocess import PreProcess
+  from src.Audio_Process.fix_length import make_audio_length
 
   audio_list = train_files
   bg_noise_list = PreProcess().bg_noise_arr(bg_noise_dir)

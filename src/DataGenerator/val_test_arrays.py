@@ -1,6 +1,6 @@
 def val_test_data_array(files,is_val,directories,seconds,bg_noise_list):
-    from src.fix_length import make_audio_length
-    from src.preprocess import PreProcess
+    from src.Audio_Process.fix_length import make_audio_length
+    from src.Audio_Process.preprocess import PreProcess
 
     """
     files: The list of audio file names in the directory
