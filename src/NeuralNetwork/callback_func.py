@@ -19,10 +19,10 @@ def SGD_checkpoint(path):
                                 period=1)
     return checkpoint_SGD
 
-def stop_early():
+def stop_early(minimun_delta,epoch_limit):
     early_stop = EarlyStopping(monitor='val_accuracy', 
-                            min_delta=0.001, 
-                            patience=30, 
+                            min_delta= minimun_delta, 
+                            patience= epoch_limit, 
                             mode='max',
                             restore_best_weights=False)
 
